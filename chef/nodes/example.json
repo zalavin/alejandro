@@ -1,0 +1,29 @@
+{
+  "app": "example",
+  "ip": "100.100.100.100",
+  "group": "admin",
+  "port": 22,
+  "user": {
+    "name":"ubuntu",
+    "password":"openssl passwd -1 'theplaintextpassword'"
+  },
+  "db":{
+    "name": "name",
+    "password": "password",
+    "user":{
+      "name": "admin",
+      "password": "secret"
+    }
+  },
+  "ruby":{
+    "version": "2.3.1"
+  },
+  "run_list": [
+                "recipe[main::postgres]",
+                "recipe[main::nodejs]",
+                "recipe[main::rbenv]",
+                "recipe[main::redis]",
+                "recipe[main::nginx]",
+                "recipe[main::app]"
+              ]
+}

@@ -1,0 +1,11 @@
+{
+  "user": {
+    "name":"XXXX",
+    "password":"openssl passwd -1 "theplaintextpassword"
+"
+  },
+  "run_list": [
+                "recipe[main]",
+                "recipe[main::user]"
+              ]
+}

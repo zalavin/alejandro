@@ -1,0 +1,8 @@
+<% config = @config %>
+Host <%= config["app"] %>
+  HostName <%= config["ip"] %>
+  Port <%= config["port"] %>
+  User <%= config["user"] %>
+  PubKeyAuthentication yes
+  PreferredAuthentications publickey
+  IdentityFile <%= "~/.ssh/#{config["app"]}/id_rsa" %>

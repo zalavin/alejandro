@@ -1,0 +1,9 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= node['db']['name'] %>
+  pool: 5
+  port: 5432
+  host: localhost
+  username: <%= node['db']['user']['name'] %>
+  password: <%= node['db']['user']['password'] %>

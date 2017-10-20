@@ -1,0 +1,26 @@
+# WARNING: DO NOT CHANGE AN EXTENSION TO SH
+# Adds this key into ~/.ssh/config file
+# Adds new key into ~/.ssh/$host folder
+# Copies key to the server
+# Connects to the server like user@host
+
+host=$1
+ip=$2
+user=$3
+port=${4:-22}
+key_link="~/.ssh/$host/id_rsa"
+text=("Host $host\n"
+      "  HostName $ip\n"
+      "  Port $port\n"
+      "  User $user\n"
+      "  PubKeyAuthentication yes\n"
+      "  PreferredAuthentications publickey\n"
+      "  IdentityFile $key_link")
+
+echo -e "${text[*]}" >> ~/.ssh/config
+cd ~/.ssh
+mkdir $host
+cd $host
+ssh-keygen -f 'id_rsa'
+ssh-copy-id -i ~/.ssh/$host/id_rsa.pub -p "$port" "$user"@"$ip"
+ssh $host

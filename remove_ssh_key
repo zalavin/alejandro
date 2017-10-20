@@ -1,0 +1,7 @@
+# Removes folder with ssh keys and all config info
+
+host=$1
+line_from=$(cat -n config | grep "Host $host" | awk '{print$1}')
+line_to=$(($line_from + 6))
+sed -i "${line_from},${line_to} d" config
+rm -r $host
